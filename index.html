@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+#show-length {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+#tf_selection {
+  position: absolute;
+  top: 10px;
+  left: 200px;
+}
+.links {
+  fill: none;
+  //stroke: #000;
+  stroke: gray;
+  stroke-opacity: 0.5;
+}
+.link-extensions {
+  fill: none;
+  stroke: gray;
+  //stroke: #000;
+  stroke-opacity: .5;
+}
+.labels {
+  font: 10px sans-serif;
+}
+.link--active {
+  stroke: #000 !important;
+  stroke-width: 1.5px;
+}
+.link-extension--active {
+  stroke-opacity: .6;
+}
+.label--active {
+  font-weight: bold;
+}
+.link--red {
+  stroke: red;
+}
+#tf-file-selector {
+  opacity: 0;
+  overflow: hidden;
+  width: 0.1px;
+  height: 0.1px;
+  z-index: -1;
+}
+#tf-button-add {
+  font-size: 15px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.tf-hidden {
+  background: white;
+  opacity: 0;
+}
+.new-thingie {
+  background: red;
+  fill: blue;
+}
+#tf-table {
+  width: 100%;
+}
+td.color-col {
+  width: 40px;
+}
+.highlight-link {
+  stroke-width: 2;
+//stroke-opacity: 1;
+}
+
+</style>
+<label id="show-length">
+  <input type="checkbox" id="show-length-box" checked="0"> Show branch lengths </input>
+</label>
+<div id="tf_selection">
+  
+  <input type="file" id="tf-file-selector" name="tf-file-selector" />
+  <label for="tf-file-selector" id="tf-button-add"> Overlay transcription factors
+    <!-- <button type="button" id="tf-button-add">Overlay transcription factors</button> -->
+  </label>
+  <!-- <label for="tf-choice">Overlay transcription factors</label> -->
+  <div class="tf-hidden">
+    <table id="tf-table"></table>
+  </div>
+  <!-- <input type="file" id="tf_file_select" style="display: none" /> -->
+  <!-- <button type="submit" id="tf_button">Add transcription factors</button> -->
+</div>
+
+
+<!-- Copyright 2016 Mike Bostock https://d3js.org -->
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/simple-statistics@6.1.0/dist/simple-statistics.min.js"></script>
+<script src="./tree.js"></script>
+
