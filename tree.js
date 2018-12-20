@@ -249,6 +249,9 @@ var svg = d3.select("body").append("svg")
     .call(d3.zoom().on("zoom", zoomed));
 var chart = svg.append("g")
     .attr("id", "chart-trans")
+var tooltip = d3.select("body").append("div")
+	.attr("class", "tooltip")
+	.style("opacity", 0)
 var tf_selector = d3.select("#tf_selection");
 
 var reader = new FileReader();
@@ -349,7 +352,24 @@ d3.json("jaspar-vertibrates-tree_upgma.json", function(error, json) {
 	}
 	function mouseovered(active) {
 	    return function(d) {
-		d3.select(this).classed("label--active", active);
+		// tooltip
+		if (active) {
+		    tooltip.transition()
+			.duration(200)
+			.style("opacity", 0.9)
+		    var html = "<p>" + tf_info[d.data.name]["family"] + "</p";
+		    tooltip.html(html)
+			.style("left", (d3.event.pageX) + "px")
+			.style("top", (d3.event.pageY + 10) + "px");
+		}
+		else {
+		    tooltip.transition()
+			.duration(200)
+			.style("opacity", 0);
+		}
+		// Highlight path to root.
+		var elem = d3.select(this);
+		elem.classed("label--active", active);
 		d3.select(d.linkExtensionNode).classed("link-extension--active", active).each(moveToFront);
 		do d3.select(d.linkNode).classed("link--active", active).each(moveToFront); while (d = d.parent);
 	    };
