@@ -359,8 +359,8 @@ d3.json("jaspar-vertibrates-tree_upgma.json", function(error, json) {
 			.style("opacity", 0.9)
 		    var html = "<p>" + tf_info[d.data.name]["family"] + "</p";
 		    tooltip.html(html)
-			.style("left", (d3.event.pageX) + "px")
-			.style("top", (d3.event.pageY + 10) + "px");
+			.style("left", (d3.event.pageX + 5) + "px")
+			.style("top", (d3.event.pageY + 15) + "px");
 		}
 		else {
 		    tooltip.transition()
